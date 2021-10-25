@@ -1,0 +1,88 @@
+﻿<Page x:Class="PointOfSale_Application.Inventory.ReceivingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PointOfSale_Application.Inventory"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="ReceivingWindow">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="White" BorderBrush="Beige" BorderThickness="1"/>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="75"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Text="Edit Product: " Margin="20 0 10 0" VerticalAlignment="Center"/>
+                    
+                    <TextBlock Text="Product Name" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <TextBox x:Name="stock_name" VerticalAlignment="Center" Margin="10 0 10 0" Width="150"/>
+                    <TextBlock Text="Quantity" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <TextBox x:Name="stock_qtyText" VerticalAlignment="Center" Margin="10 0 10 0" Width="100"/>
+                    <TextBlock Text="Price" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <TextBox x:Name="stock_price" VerticalAlignment="Center" Margin="10 0 10 0" Width="100"/>
+                    
+                    <Button x:Name="stock_updBtn" Content="Update" Width="50" Margin="10 0 10 0" VerticalAlignment="Center" Click="stock_updBtn_Click"/>
+                    <Button x:Name="stock_clrBtn" Content="Clear" Width="50" Margin="10 0 10 0" VerticalAlignment="Center" Click="stock_clrBtn_Click"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Text="Add Product Item: " Margin="20 0 10 0" VerticalAlignment="Center"/>
+
+                    <TextBlock Text="Product Name" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <TextBox x:Name="add_prodname" VerticalAlignment="Center" Margin="5 0 5 0" Width="100"/>
+                    <TextBlock Text="Brand" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <TextBox x:Name="add_brand" VerticalAlignment="Center" Margin="5 0 5 0" Width="100"/>
+                    <TextBlock Text="Quantity" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <TextBox x:Name="add_qty" VerticalAlignment="Center" Margin="5 0 5 0" Width="100"/>
+                    <TextBlock Text="Price" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <TextBox x:Name="add_price" VerticalAlignment="Center" Margin="5 0 10 0" Width="100"/>
+
+                    <Button x:Name="add_addBtn" Content="Add" Width="50" Margin="10 0 10 0" VerticalAlignment="Center" Click="add_addBtn_Click"/>
+                    <Button x:Name="add_clrBtn" Content="Clear" Width="50" Margin="10 0 10 0" VerticalAlignment="Center" Click="add_clrBtn_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Text="Filter by:" Margin="20 0 10 0" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Product ID" VerticalAlignment="Center" Margin="50 0 10 0"/>
+                <TextBox x:Name="srch_id" VerticalAlignment="Center" Margin="10 0 10 0" Width="100" TextChanged="srch_id_combo_TextChanged"/>
+                
+                <TextBlock Text="Product Name" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                <TextBox x:Name="srch_prodname" VerticalAlignment="Center" Margin="10 0 10 0" Width="200" TextChanged="srch_prodname_TextChanged"/>
+
+                <Button x:Name="filter_clrBtn" Content="Clear" Width="50" Margin="10 0 10 0" VerticalAlignment="Center" Click="filter_clrBtn_Click"/>
+            </StackPanel>
+            
+        </Grid>
+        <Rectangle Fill="Black" Height="1" Opacity=".5" Margin="0,130,0,65"/>
+
+        <ScrollViewer Grid.Row="1" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+            <DataGrid x:Name="product_receiving_grid" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Header="Product ID" Binding="{Binding prod_id}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="300" Header="Product Name" Binding="{Binding prod_name}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="150" Header="Brand" Binding="{Binding brand}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="100" Header="Quantity" Binding="{Binding qty}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Price" Binding="{Binding msrp}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="*" Header="Status" Binding="{Binding status}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
+</Page>
